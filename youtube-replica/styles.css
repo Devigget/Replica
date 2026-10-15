@@ -1301,7 +1301,298 @@ body.dark-theme .visit-btn {
     width: 36px;
     justify-content: center;
   }
-  .shorts-grid {
-    grid-template-columns: repeat(2, 1fr);
+}
+
+/* ==========================================================================
+   Screen #02: YouTube Channel Profile & Empty State Component Styles
+   (Following specs/02_channel_profile.md & GLOBAL_DESIGN_SYSTEM.md)
+   ========================================================================== */
+
+.channel-profile-viewport {
+  margin-left: var(--sidebar-width, 240px);
+  margin-top: var(--header-height, 56px);
+  padding: 0 48px 64px 48px;
+  background-color: var(--bg-primary, #ffffff);
+  color: var(--text-primary, #0f0f0f);
+  min-height: calc(100vh - var(--header-height, 56px));
+  box-sizing: border-box;
+  transition: var(--transition-smooth, all 0.2s ease);
+}
+
+body.sidebar-collapsed .channel-profile-viewport {
+  margin-left: var(--sidebar-collapsed-width, 72px);
+}
+
+.channel-profile-container {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* --- Channel Header --- */
+.channel-header {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 24px;
+  padding: 32px 0 28px 0;
+  box-sizing: border-box;
+}
+
+.channel-avatar-wrapper {
+  flex-shrink: 0;
+}
+
+.channel-avatar-letter {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  background-color: #00838f; /* Teal Brand Avatar from visual screenshot */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: 72px;
+  font-weight: 400;
+  user-select: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.channel-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  padding-top: 8px;
+}
+
+.channel-title {
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 44px;
+  color: var(--text-primary, #0f0f0f);
+  margin: 0;
+  letter-spacing: -0.5px;
+}
+
+.channel-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.channel-handle {
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary, #606060);
+  line-height: 20px;
+}
+
+.channel-bio-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 2px;
+}
+
+.channel-bio-text {
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--text-secondary, #606060);
+  line-height: 20px;
+}
+
+.btn-more-bio {
+  background: none;
+  border: none;
+  padding: 0;
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary, #0f0f0f);
+  cursor: pointer;
+  line-height: 20px;
+}
+
+.btn-more-bio:hover {
+  text-decoration: underline;
+}
+
+/* Action Buttons */
+.channel-actions-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.btn-secondary-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 16px;
+  border-radius: 18px;
+  background-color: var(--bg-surface, #f2f2f2);
+  color: var(--text-primary, #0f0f0f);
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+.btn-secondary-pill:hover {
+  background-color: var(--bg-hover, #e5e5e5);
+}
+
+.btn-secondary-pill:active {
+  transform: scale(0.98);
+}
+
+.btn-secondary-pill:focus-visible {
+  outline: 2px solid var(--border-focus, #065fd4);
+  outline-offset: 2px;
+}
+
+/* --- Channel Empty State --- */
+.channel-empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 72px 16px;
+  text-align: center;
+}
+
+.empty-state-illustration {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.empty-state-text-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  max-width: 440px;
+  margin-bottom: 24px;
+}
+
+.empty-state-headline {
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 24px;
+  color: var(--text-primary, #0f0f0f);
+  margin: 0;
+}
+
+.empty-state-subtext {
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 20px;
+  color: var(--text-secondary, #606060);
+  margin: 0;
+}
+
+.empty-state-cta-wrapper {
+  display: flex;
+  justify-content: center;
+}
+
+/* Primary Dark "Create" Button */
+.btn-primary-dark-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 36px;
+  padding: 0 20px;
+  border-radius: 18px;
+  background-color: var(--bg-active, #0f0f0f);
+  color: var(--pill-active-text, #ffffff);
+  font-family: var(--font-family-base, 'Roboto', sans-serif);
+  font-size: 14px;
+  font-weight: 500;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background-color 0.2s ease, opacity 0.2s ease, transform 0.1s ease;
+}
+
+.btn-primary-dark-pill:hover {
+  background-color: var(--bg-surface-elevated, #272727);
+  opacity: 0.92;
+}
+
+.btn-primary-dark-pill:active {
+  transform: scale(0.98);
+}
+
+.btn-primary-dark-pill:focus-visible {
+  outline: 2px solid var(--border-focus, #065fd4);
+  outline-offset: 2px;
+}
+
+/* Clapperboard Graphic Effects */
+.graphic-clapperboard {
+  position: relative;
+  width: 160px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  animation: floatSubtle 4s ease-in-out infinite alternate;
+}
+
+@keyframes floatSubtle {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-4px) rotate(-1deg); }
+}
+
+@media (max-width: 900px) {
+  .channel-profile-viewport {
+    margin-left: 72px;
+    padding: 0 24px 48px 24px;
   }
 }
+
+@media (max-width: 768px) {
+  .channel-header {
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 16px;
+  }
+  .channel-details {
+    align-items: center;
+  }
+  .channel-avatar-letter {
+    width: 96px;
+    height: 96px;
+    font-size: 42px;
+  }
+  .channel-title {
+    font-size: 26px;
+    line-height: 32px;
+  }
+  .channel-actions-row {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .channel-empty-state {
+    padding: 40px 16px;
+  }
+}
+
