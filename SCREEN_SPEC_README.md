@@ -204,6 +204,34 @@ Every generated screen spec adheres to the following standardized format:
 
 ---
 
+## 4.2 Companion Human-Readable Spec Schema (`SCREEN_SPEC_XX_READABLE.md`)
+
+Alongside the technical code contract, the engine generates a structured UI & Design Audit specification formatted for designers, product managers, and visual inspection:
+
+```markdown
+# UI & Component Style Inventory: [Screen Name]
+**File:** `SCREEN_SPEC_XX_READABLE.md`
+
+## 1. Buttons & Interactive Elements Catalog
+- Navigation & Action Buttons Table (Button Name, Visual Variant, Position, Default Style, Hover & Active States, CSS Classes)
+- Text Links & Call-To-Actions (Label, Destination/Role, Typography, Color, Hover Transform)
+
+## 2. Headers & Typography Catalog
+- Hierarchical Table (Text Content, Semantic Tag h1/h2/p, Font Family, Fluid clamp() Formula, Font Weight, Line Height, Color/Gradient Hex stops)
+
+## 3. CSS System & Visual Tokens
+- Color Palette Tokens (Hex codes for background, surfaces, borders, text, accents)
+- Visual Effects & Glassmorphism (Backdrop-filter blur values, shadows, radial glow layers)
+
+## 4. Layout & Spacing Matrix
+- Container & Section Table (Layout Model Flex/Grid, Alignments, Paddings, Gaps, Max Widths)
+
+## 5. Assets, Icons & Media Inventory
+- Categorized Tree (SVG icons with dimensions, thumbnails, avatars, hero media specifications)
+```
+
+---
+
 ## 5. Recommended Directory Layout for Any Number of Screens
 
 Organize the repository so that screenshots, specs, and generated components follow a clean 1-to-1 matching convention:
