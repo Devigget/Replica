@@ -6,6 +6,9 @@
 [![GitHub Stars](https://img.shields.io/github/stars/Surya17155/Replica?style=social)](https://github.com/Surya17155/Replica/stargazers)
 [![GitHub Issues](https://img.shields.io/github/issues/Surya17155/Replica)](https://github.com/Surya17155/Replica/issues)
 
+> [!IMPORTANT]
+> **Team Guide:** For the multi-screen specification architecture and workflow guide (turning screenshots into explicit CSS/DOM specifications for Claude, Antigravity, and Copilot), see [SCREEN_SPEC_README.md](file:///c:/Users/VigneshPandurangGaun/OneDrive%20-%20McLaren%20Strategic%20Solutions%20US%20Inc/Documents/Shivansh%20Tasks%20for%20Frontend%20UI/Replica/SCREEN_SPEC_README.md).
+
 ---
 
 ## Demo
