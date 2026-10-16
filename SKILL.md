@@ -28,8 +28,8 @@ This skill turns visual UI screenshots (from 1 to 100+ screens) into determinist
 2. **Ask Brand Context** (if not provided; fall back to screenshot text)
 3. **Run Image Analysis** (silently — internal checklist)
 4. **Publish Dual-Spec Outputs**:
-   - **File 1 (`SCREEN_SPEC_XX.md`):** Complete deterministic code-generation contract (HTML/JSX DOM hierarchy, compiled CSS rules, Framer Motion tuples, and responsive breakpoints).
-   - **File 2 (`SCREEN_SPEC_XX_READABLE.md`):** Structured human-readable UI & design audit spec:
+   - **File 1 (`specs/machine/SCREEN_SPEC_XX.md`):** Complete deterministic code-generation contract (HTML/JSX DOM hierarchy, compiled CSS rules, Framer Motion tuples, and responsive breakpoints).
+   - **File 2 (`specs/human/SCREEN_SPEC_XX_READABLE.md`):** Structured human-readable UI & design audit spec:
      - *Buttons & Interactive Elements Catalog* (every button, link, icon action, visual style, hover/active state, CSS)
      - *Headers & Typography Catalog* (every `h1`, `h2`, font-family, fluid `clamp()`, weights, colors/gradients)
      - *CSS System & Visual Tokens* (colors, frosted glass effects, gradients, shadows, borders)
