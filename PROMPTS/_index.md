@@ -1,9 +1,9 @@
 # PROMPTS — Verified Prompt Library
 
-## Screen Specification Generation Templates
-- [`GENERATE_SCREEN_SPEC.md`](./GENERATE_SCREEN_SPEC.md) — Generates deterministic code-generation contracts (`specs/SCREEN_SPEC_XX.md`)
-- [`GENERATE_SCREEN_SPEC_READABLE.md`](./GENERATE_SCREEN_SPEC_READABLE.md) — Generates human-readable UI & component style audits (`specs/SCREEN_SPEC_XX_READABLE.md`)
-- [`GENERATE_SCREEN_SPEC_BOTH.md`](./GENERATE_SCREEN_SPEC_BOTH.md) — Generates both companion files in mutual alignment
+## Screen Specification Generation Templates (Supports Single Screenshots & Folders)
+- [`GENERATE_SCREEN_SPEC.md`](./GENERATE_SCREEN_SPEC.md) — Generates deterministic code contracts in `specs/machine/SCREEN_SPEC_[ID]_[name].md`
+- [`GENERATE_SCREEN_SPEC_READABLE.md`](./GENERATE_SCREEN_SPEC_READABLE.md) — Generates human-readable UI & style audits in `specs/human/SCREEN_SPEC_[ID]_[name]_READABLE.md`
+- [`GENERATE_SCREEN_SPEC_BOTH.md`](./GENERATE_SCREEN_SPEC_BOTH.md) — Generates both companion specs in mutual alignment (processes single screenshots or entire screenshot folders)
 
 ---
 

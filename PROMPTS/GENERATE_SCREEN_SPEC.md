@@ -1,25 +1,29 @@
-# Prompt Template: Generate Deterministic Code Specification (`SCREEN_SPEC_XX.md`)
+# Prompt Template: Generate Deterministic Code Specification (`specs/machine/`)
 
 > **File:** `PROMPTS/GENERATE_SCREEN_SPEC.md`  
 > **Role:** Senior Frontend Architect & Design Systems Engineer  
-> **Target Output:** `specs/SCREEN_SPEC_[ID].md`  
-> **Input Required:** Screenshot of the UI screen + Screen ID & Name (optional brand context)
+> **Target Output:** `specs/machine/SCREEN_SPEC_[ID]_[name].md`  
+> **Input Accepted:**  
+> - **Single Screenshot:** UI image + Screen ID & Name (optional brand context)  
+> - **Folder Mode:** Folder containing UI screenshots (e.g. `screenshots/youtube ss/`)
 
 ---
 
 ## Agent Instructions
 
 You are acting as the **Replica Deterministic Screen Spec Generator**.
-Analyze the attached visual screenshot and generate a complete, deterministic, production-grade **Code Generation Specification** contract.
+Analyze the provided visual screenshot (or all screenshots in the specified folder) and generate complete, deterministic, production-grade **Code Generation Specification** contracts.
 
-Your output must be saved to:  
-`specs/SCREEN_SPEC_[ID].md`
+Outputs must be saved directly to the dedicated machine contracts directory:  
+`specs/machine/SCREEN_SPEC_[ID]_[name].md`
+
+If given a folder of screenshots, iterate through all images in the folder and generate an explicit code spec for each screen without omitting any.
 
 ---
 
 ## Output Contract & Required Sections
 
-The generated file must adhere strictly to the following 6-part schema:
+The generated file must adhere strictly to the following schema:
 
 ```markdown
 # Screen Spec: [Screen Name] ([SCREEN-ID])
@@ -28,15 +32,15 @@ The generated file must adhere strictly to the following 6-part schema:
 > **Target Route:** `/[route-path]`  
 > **Source Reference:** [Product / Brand Name]  
 > **Design Aesthetic:** [e.g., High-Contrast Dark Theme, Frosted Glassmorphism, Clean Minimalist Light]  
-> **Companion Spec:** `specs/SCREEN_SPEC_[ID]_READABLE.md`
+> **Companion Spec:** `specs/human/SCREEN_SPEC_[ID]_[name]_READABLE.md`
 
 ---
 
 ## 1. Metadata & Layout Architecture
 
-- **Screen ID:** `[SCREEN-ID]` (e.g., `SCR-WEBEX-002`)
+- **Screen ID:** `[SCREEN-ID]` (e.g., `SCR-01`)
 - **Route:** `/[route-path]`
-- **Shell Layout:** `[LayoutShellName]` (e.g., Fixed top navbar + hero canvas + multi-column grid)
+- **Shell Layout:** `[LayoutShellName]` (e.g., Fixed top navbar + left sidebar drawer + main content canvas)
 - **Viewport Target:**
   - Desktop: `1440px+` (Max content container `[width]px` centered, columns/grid rules)
   - Tablet: `768px - 1024px` (Responsive collapses, horizontal scrolling or stacked layout)
@@ -46,47 +50,25 @@ The generated file must adhere strictly to the following 6-part schema:
 
 ## 2. Component & DOM Hierarchy
 
-Provide the complete semantic HTML5 / JSX DOM tree for the entire viewport.
-- Use semantic tags (`<header>`, `<nav>`, `<main>`, `<section>`, `<aside>`, `<article>`, `<button>`).
-- Include every container class name.
-- Embed inline SVG paths/viewBox for all icons (or specify exact Lucide React icon names).
-- Represent realistic copy and structural groupings.
-
-Example:
 ```html
-<div class="screen-root">
-  <header class="global-navbar">...</header>
-  <main class="content-container">
-    <section class="hero-section">...</section>
-    <section class="grid-section">...</section>
-  </main>
-</div>
+<!-- Fully written semantic HTML5 DOM tree with all classes and inline SVGs -->
 ```
 
 ---
 
 ## 3. Explicit CSS Specifications
 
-Write **complete, uncompressed, production-grade CSS rules** covering all layout containers, cards, typography, and interactive components.
-
-Rules:
-- Never use vague placeholders like "add styling here" or "similar to above".
-- Every color must be an exact Hex code (`#0c0f12`, `#00875a`) or CSS variable with fallback (`var(--color-bg, #0f0f0f)`).
-- Explicitly define `display`, `flex-direction`, `grid-template-columns`, `gap`, `padding`, `margin`, `border-radius`, and `box-shadow`.
-- Include full pseudo-classes for interactive elements: `:hover`, `:active`, `:focus-visible`, and transition properties (`transition: all 0.2s ease`).
-- Include responsive media queries (`@media (max-width: 1024px)`, `@media (max-width: 768px)`).
+```css
+/* Fully written, uncompressed CSS rules with exact Hex colors, Flexbox/Grid, paddings, borders, shadows, hover/active states, and media queries */
+```
 
 ---
 
 ## 4. Typography & Color Mapping Table
 
-| Element / Role | Font Family | Size (px / clamp) | Weight | Line Height | Color (Hex) | Letter Spacing |
+| Element | Selector | Font Family | Size | Weight | Line Height | Color (Hex) |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| Hero Headline (H1) | Inter / System | clamp(2.5rem, 5vw, 4rem) | 700 (Bold) | 1.1 | #ffffff | -0.02em |
-| Section Title (H2) | Inter / System | 28px | 600 (Semibold)| 1.25 | #f1f1f1 | -0.01em |
-| Body Text | Inter / System | 15px | 400 (Regular) | 1.5 | #94a3b8 | normal |
-| Primary CTA Button | Inter / System | 14px | 600 (Semibold)| 1.2 | #ffffff | normal |
-| Micro-copy / Meta | Inter / System | 12px | 400 (Regular) | 1.4 | #64748b | normal |
+| ... | ... | ... | ... | ... | ... | ... |
 
 ---
 
@@ -112,4 +94,5 @@ Rules:
 - [ ] Is the DOM structure 100% semantic and complete?
 - [ ] Are all hover and active states explicitly written out in CSS?
 - [ ] Are all responsive breakpoint adjustments clearly defined?
-- [ ] Is the output saved directly to `specs/SCREEN_SPEC_[ID].md`?
+- [ ] Is the output saved directly to `specs/machine/SCREEN_SPEC_[ID]_[name].md`?
+- [ ] If given a folder of screenshots, were all images processed?

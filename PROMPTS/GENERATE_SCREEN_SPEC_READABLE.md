@@ -1,19 +1,23 @@
-# Prompt Template: Generate Human-Readable Spec & UI Audit (`SCREEN_SPEC_XX_READABLE.md`)
+# Prompt Template: Generate Human-Readable Spec & UI Audit (`specs/human/`)
 
 > **File:** `PROMPTS/GENERATE_SCREEN_SPEC_READABLE.md`  
 > **Role:** Principal UI/UX Auditor & Design Token Architect  
-> **Target Output:** `specs/SCREEN_SPEC_[ID]_READABLE.md`  
-> **Input Required:** Screenshot of the UI screen + Screen ID & Name (optional brand context)
+> **Target Output:** `specs/human/SCREEN_SPEC_[ID]_[name]_READABLE.md`  
+> **Input Accepted:**  
+> - **Single Screenshot:** UI image + Screen ID & Name (optional brand context)  
+> - **Folder Mode:** Folder containing UI screenshots (e.g. `screenshots/youtube ss/`)
 
 ---
 
 ## Agent Instructions
 
 You are acting as the **Replica UI & Component Style Auditor**.
-Analyze the attached visual screenshot and generate a structured, human-readable **UI & Component Style Inventory**. This document is formatted for designers, product managers, and frontend developers for rapid visual auditing and design system token extraction.
+Analyze the provided visual screenshot (or all screenshots in the specified folder) and generate structured, human-readable **UI & Component Style Inventories**. This document is formatted for designers, product managers, and frontend developers for rapid visual auditing and design system token extraction.
 
-Your output must be saved to:  
-`specs/SCREEN_SPEC_[ID]_READABLE.md`
+Outputs must be saved directly to the dedicated human-readable directory:  
+`specs/human/SCREEN_SPEC_[ID]_[name]_READABLE.md`
+
+If given a folder of screenshots, iterate through all images in the folder and generate an explicit design audit for each screen without omitting any.
 
 ---
 
@@ -24,10 +28,10 @@ The generated file must adhere strictly to the following 5-part schema:
 ```markdown
 # UI & Component Style Inventory: [Screen Name]
 
-**File:** `SCREEN_SPEC_[ID]_READABLE.md`  
+**File:** `SCREEN_SPEC_[ID]_[name]_READABLE.md`  
 **Screen Target:** [Product / Screen Name]  
-**Screen ID:** `[SCREEN-ID]` (e.g., `SCR-WEBEX-002`)  
-**Companion File:** `specs/SCREEN_SPEC_[ID].md` (Code Generation Contract)  
+**Screen ID:** `[SCREEN-ID]` (e.g., `SCR-01`)  
+**Companion File:** `specs/machine/SCREEN_SPEC_[ID]_[name].md` (Code Generation Contract)  
 
 ---
 
@@ -43,35 +47,20 @@ This catalog outlines every clickable button, navigation link, dropdown trigger,
 
 ### 1.2 Navigation Links & Call-To-Actions
 
-| Link Label | Variant | Destination / Role | Typography & Color | Hover State | Transition |
+| Link Label | Visual Variant | Target / Role | Typography Style | Hover State | Transition |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **"[Link Text]"** | [Dropdown Nav Item / Header Link / Underline Link] | [Mega-menu trigger / Route / Modal] | [Size, Weight, Hex Color] | [Color shift, underline, chevron rotation] | `[Tailwind / CSS transition rule]` |
+| **"[Link Text]"** | [Subtle Underline / Accent Glow / Ghost Nav] | [Route or Anchor target] | Font-size `...px`, weight `...`, color `#...` | Color shifts to `#...` / Underline appears | `color 0.2s ease` |
 
 ---
 
 ## 2. Headers & Typography Catalog
 
-A complete architectural breakdown of all textual hierarchy across the viewport.
-
-### Visual Hierarchy Flowchart
-```mermaid
-flowchart TD
-    H1["Headline (H1): '[Headline Text]'<br/>Weight · Fluid clamp() / px · Hex"]
-    H2["Sub-headline (H2): '[Subtext / Tagline]'<br/>Weight · Fluid clamp() / px · Hex"]
-    H3["Card / Section Title (H3): '[Section Text]'<br/>Weight · Fluid clamp() / px · Hex"]
-    CTA["Action CTA Text: '[Button Label]'<br/>Weight · Size · Hex"]
-    Meta["Micro-copy / Disclaimer: '[Meta Text]'<br/>Weight · Size · Hex"]
-```
-
 ### 2.1 Typography Hierarchy Table
 
-| Text Content | Tag / Role | Font Family | Size (Fluid / Responsive) | Weight | Line Height | Color / Treatment |
+| Text Content / Role | HTML Tag | Font Family | Size (px or clamp) | Font Weight | Line Height | Color & Visual Treatment |
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
-| **"[Headline Text]"** | `h1` (Hero Headline) | [Font Name] | `clamp(...)` (e.g., 40px – 64px) | 700 (Bold) | `1.1` | Solid `#ffffff`, `letter-spacing: -0.02em` |
-| **"[Sub-headline]"** | `h2` / `p` (Lead Paragraph) | [Font Name] | `clamp(...)` (e.g., 20px – 28px) | 500 (Medium) | `1.3` | Solid `#cbd5e1` |
-| **"[Card Heading]"** | `h3` (Card Title) | [Font Name] | `18px` | 600 (Semibold)| `1.4` | Solid `#f1f1f1` |
-| **"[Button Label]"** | `span` (Button Text) | [Font Name] | `14px` | 600 (Semibold)| `1.2` | Solid `#ffffff` |
-| **"[Disclaimer]"** | `small` (Micro-copy) | [Font Name] | `12px` | 400 (Regular) | `1.4` | Muted Silver Gray `#94a3b8` |
+| **"[Heading Text]"** | `h1` | Inter, sans-serif | `clamp(32px, 5vw, 48px)` | 700 (Bold) | `1.15` | `#0f0f0f` |
+| **"[Subhead Text]"** | `p` | Inter, sans-serif | `16px` | 400 (Regular) | `1.5` | `#606060` |
 
 ---
 
@@ -79,32 +68,22 @@ flowchart TD
 
 ### 3.1 Color Palette Tokens
 
-| Token Name | Role / Category | Hex / RGBA Value | Sample Usage Context |
-| :--- | :--- | :--- | :--- |
-| `--color-bg-base` | Primary Canvas Background | `#0c0f12` | Viewport body & main shell |
-| `--color-surface-elevated` | Elevated Card / Navbar | `#161b22` | Cards, popovers, dropdown containers |
-| `--color-accent-primary` | Brand CTA / Emphasis | `#00875a` | Primary action buttons, active badges |
-| `--color-text-primary` | High-contrast Text | `#ffffff` | Headlines, active links, primary labels |
-| `--color-text-secondary` | Muted Secondary Text | `#94a3b8` | Subtext, timestamps, placeholders |
-| `--color-border-subtle` | Dividers & Borders | `rgba(255, 255, 255, 0.08)` | Navbar bottom border, card outlines |
-
-### 3.2 Visual Effects & Glassmorphism
-
-- **Backdrop Filters:** `backdrop-filter: blur(16px)` on floating navigation and popovers.
-- **Elevation Box Shadows:**
-  - Card Shadow: `0 4px 20px rgba(0, 0, 0, 0.25)`
-  - Glowing Button Shadow: `0 8px 24px rgba(0, 135, 90, 0.35)`
-- **Ambient Radial Gradients:** Diffuse background glows (e.g., `radial-gradient(circle at 50% 0%, rgba(0, 135, 90, 0.15), transparent 70%)`).
+```css
+--bg-primary: #ffffff;
+--bg-surface: #f2f2f2;
+--text-primary: #0f0f0f;
+--text-secondary: #606060;
+--border-subtle: rgba(0, 0, 0, 0.1);
+--brand-accent: #...;
+```
 
 ---
 
 ## 4. Layout & Spacing Matrix
 
-| Container / Section | Layout Model | Alignment | Paddings (T/R/B/L) | Gap | Max-Width |
+| Container / Section | Layout Model | Alignment | Paddings (T/R/B/L) | Gap | Max-Width / Constraints |
 | :--- | :--- | :--- | :--- | :--- | :--- |
-| **Global Header** | Flex (Row) | `align-items: center; justify-content: space-between` | `0 32px` | `24px` | `100%` (Fixed height `68px`) |
-| **Hero Container** | Flex (Row/Wrap) | `align-items: center; justify-content: space-between` | `80px 32px 64px` | `48px` | `1360px` centered |
-| **Feature Card Grid** | Grid (`repeat(3, 1fr)`) | `stretch` | `0 32px` | `24px` | `1360px` centered |
+| **Main Content** | Flex (Column) | `items-stretch` | `32px 48px 64px` | `24px` | Margin-left: `240px`, Min-height: `calc(100vh - 56px)` |
 
 ---
 
@@ -114,16 +93,15 @@ flowchart TD
   - `[Icon Name]` (e.g., Chevron, Search, Download, Close) — `16x16px` / `20x20px`, monochrome stroke/fill.
 - **Images & Avatars:**
   - Avatar: `40x40px`, circular (`border-radius: 50%`).
-  - Hero Mockup / Product Still: `16:9` ratio, rounded corners (`border-radius: 12px`).
-- **Logos & Wordmarks:**
-  - Brand Logo: Inline SVG or image asset, height `28px`.
+  - Hero Mockup / Thumbnail: `16:9` ratio, rounded corners (`border-radius: 12px`).
 ```
 
 ---
 
 ## Quality Bar Checklist
 - [ ] Are all visible buttons and links cataloged with both default and hover states?
-- [ ] Is the typography table completely populated with fluid clamp() formulas and weights?
+- [ ] Is the typography table completely populated with sizes, weights, and colors?
 - [ ] Are all hex codes and CSS tokens explicitly mapped?
-- [ ] Does the layout matrix detail Flex/Grid models, padding, and max-widths?
-- [ ] Is the output saved directly to `specs/SCREEN_SPEC_[ID]_READABLE.md`?
+- [ ] Does the layout matrix detail Flex/Grid models, padding, and constraints?
+- [ ] Is the output saved directly to `specs/human/SCREEN_SPEC_[ID]_[name]_READABLE.md`?
+- [ ] If given a folder of screenshots, were all images processed?

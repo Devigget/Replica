@@ -100,39 +100,70 @@ Or [download the ZIP](https://github.com/Surya17155/Replica/archive/refs/heads/m
 | **Claude Code** | Place the `SKILL.md` file in your `.claude/skills/` directory |
 | **Lovable / Bolt / Replit** | Copy `SKILL.md` content into your project instructions |
 
-### Step 3: Fast Screen Spec Generation (Prompts for Antigravity & Cursor)
+### Step 3: Fast Screen Spec Generation (Single Screenshot & Folder Modes)
 
-To generate specifications from any screenshot, simply attach or paste your image into **Antigravity** or **Cursor** and use any of these simple 1-line prompts:
+Replica supports **Single Screenshot Mode** as well as **Batch Folder Mode**. You can provide either an individual image or point to an entire folder of screenshots (e.g., `screenshots/youtube ss/`).
 
-#### 1. Generate Deterministic Code Contract (`SCREEN_SPEC_XX.md`)
+Specifications are automatically sorted into dedicated directories:
+- `specs/machine/` — 100% deterministic code contracts for AI coding agents.
+- `specs/human/` — Structured design system audits and inventories for designers and PMs.
+- `specs/README.md` — Master inventory index mapping all screens and routes.
+
+---
+
+#### Mode A: Folder Input (Batch Spec Generation)
+
+When you drop a folder of screenshots or want to process an entire folder:
+
 ```text
-Follow PROMPTS/GENERATE_SCREEN_SPEC.md for this screenshot.
+Follow PROMPTS/GENERATE_SCREEN_SPEC_BOTH.md for all screenshots in folder /screenshots/youtube ss
 ```
-> **Outputs:** Complete DOM tree, explicit CSS rules, interactive `:hover`/`:active` states, design tokens, and responsive media queries.
-
-#### 2. Generate Human-Readable UI & Style Inventory (`SCREEN_SPEC_XX_READABLE.md`)
+or simply:
 ```text
-Follow PROMPTS/GENERATE_SCREEN_SPEC_READABLE.md for this screenshot.
+Take all screenshots in folder /screenshots/[folder_name] and generate specs in specs/machine and specs/human.
 ```
-> **Outputs:** Button & action tables, typography hierarchy table with fluid `clamp()`, color palette tokens, layout & spacing matrix, and SVG asset inventory.
+> **Outputs:**
+> 1. Scans all images (`.png`, `.jpg`, `.jpeg`, `.webp`) in the folder.
+> 2. Generates companion pairs for each image: `specs/machine/SCREEN_SPEC_[ID]_[name].md` and `specs/human/SCREEN_SPEC_[ID]_[name]_READABLE.md`.
+> 3. Populates `specs/README.md` with the full matrix linking all screens.
 
-#### 3. Generate BOTH Files Together (In Mutual Alignment)
+---
+
+#### Mode B: Single Screenshot Input
+
+When providing an individual image file or clipboard paste:
+
+##### 1. Generate BOTH Companion Files in Mutual Alignment (Recommended)
 ```text
 Follow PROMPTS/GENERATE_SCREEN_SPEC_BOTH.md for this screenshot.
 ```
-> **Outputs:** Both companion files (`specs/SCREEN_SPEC_XX.md` and `specs/SCREEN_SPEC_XX_READABLE.md`) in 100% token and class alignment.
+> **Outputs:** Generates both `specs/machine/SCREEN_SPEC_[ID]_[name].md` and `specs/human/SCREEN_SPEC_[ID]_[name]_READABLE.md` with 100% token and class alignment.
 
-*(Tip for Cursor users: You can also use the `@` mention shortcut: `@GENERATE_SCREEN_SPEC_BOTH.md for this screenshot`)*
+##### 2. Generate Deterministic Code Contract Only (`specs/machine/`)
+```text
+Follow PROMPTS/GENERATE_SCREEN_SPEC.md for this screenshot.
+```
+> **Outputs:** Complete DOM tree, explicit CSS rules, interactive `:hover`/`:active` states, design tokens, and responsive media queries in `specs/machine/`.
 
-### Example Workflow
+##### 3. Generate Human-Readable UI & Style Inventory Only (`specs/human/`)
+```text
+Follow PROMPTS/GENERATE_SCREEN_SPEC_READABLE.md for this screenshot.
+```
+> **Outputs:** Button & action tables, typography scale, color tokens, layout matrix, and SVG asset inventory in `specs/human/`.
+
+*(Tip for Cursor users: You can also use `@` mention shortcuts, e.g.: `@GENERATE_SCREEN_SPEC_BOTH.md for all screenshots in /screenshots/youtube ss`)*
+
+---
+
+### Example Workflow: Batch Folder Processing
 
 ```
-User: [Uploads screenshot of UI] "Follow PROMPTS/GENERATE_SCREEN_SPEC_BOTH.md for this screenshot."
+User: "Follow PROMPTS/GENERATE_SCREEN_SPEC_BOTH.md for all screenshots in /screenshots/youtube ss"
 Antigravity / Cursor:
-  1. Detects screen brand and layout architecture.
-  2. Generates specs/SCREEN_SPEC_03.md (complete CSS & HTML code contract).
-  3. Generates specs/SCREEN_SPEC_03_READABLE.md (human-readable design & token audit).
-  Both files saved directly to specs/ ready for coding agents!
+  1. Scans 7 screenshots: home.png, subscriptions.png, watch_history.png, playlists.png, etc.
+  2. Generates 7 machine contracts in specs/machine/ (complete CSS & HTML code contracts).
+  3. Generates 7 human audits in specs/human/ (design & component catalogs).
+  4. Generates specs/README.md with a navigable matrix of all screens and routes.
 ```
 
 ---
@@ -220,9 +251,9 @@ Replica/
 │
 ├── PROMPTS/                       # Screen spec templates & 270+ verified prompt library
 │   ├── _index.md
-│   ├── GENERATE_SCREEN_SPEC.md         # Template: Deterministic code contract
-│   ├── GENERATE_SCREEN_SPEC_READABLE.md# Template: Human-readable style inventory
-│   ├── GENERATE_SCREEN_SPEC_BOTH.md    # Template: Both specs in mutual alignment
+│   ├── GENERATE_SCREEN_SPEC.md         # Template: Deterministic code contract (machine/)
+│   ├── GENERATE_SCREEN_SPEC_READABLE.md# Template: Human-readable style inventory (human/)
+│   ├── GENERATE_SCREEN_SPEC_BOTH.md    # Template: Dual specs (supports single & folder input)
 │   ├── github-catalog/
 │   │   └── catalog.json           # Searchable catalog of all prompts
 │   └── github-interfaces/         # 170+ ready-to-use prompt JSONs
@@ -234,6 +265,11 @@ Replica/
 │       ├── nexacore-hero.json
 │       ├── stellar-ai-hero.json
 │       └── ... (170+ total)
+│
+├── specs/                         # Dual-Spec Architecture Directory
+│   ├── README.md                  # Master screen inventory & spec matrix
+│   ├── machine/                   # Deterministic Code Contracts (for AI agents)
+│   └── human/                     # UI & Design System Audits (for humans & PMs)
 │
 ├── scripts/                       # Utility scripts
 │   ├── asset_prompt_generator.py  # Generate asset prompts
