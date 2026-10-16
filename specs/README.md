@@ -12,7 +12,8 @@ specs/
 │   ├── SCREEN_SPEC_04_playlists.md
 │   ├── SCREEN_SPEC_05_channel_profile.md
 │   ├── SCREEN_SPEC_06_downloads.md
-│   └── SCREEN_SPEC_07_memberships.md
+│   ├── SCREEN_SPEC_07_memberships.md
+│   └── SCREEN_SPEC_08_settings.md
 └── human/                     # For UI/UX Designers, PMs & Reviewers (Design Audit)
     ├── SCREEN_SPEC_01_home_READABLE.md
     ├── SCREEN_SPEC_02_subscriptions_READABLE.md
@@ -20,7 +21,8 @@ specs/
     ├── SCREEN_SPEC_04_playlists_READABLE.md
     ├── SCREEN_SPEC_05_channel_profile_READABLE.md
     ├── SCREEN_SPEC_06_downloads_READABLE.md
-    └── SCREEN_SPEC_07_memberships_READABLE.md
+    ├── SCREEN_SPEC_07_memberships_READABLE.md
+    └── SCREEN_SPEC_08_settings_READABLE.md
 ```
 
 ---
@@ -36,6 +38,7 @@ specs/
 | **#05** | YouTube Channel Profile | `/@VigneshMclaren` | `screenshots/youtube ss/channel_profile.png` | [SCREEN_SPEC_05_channel_profile.md](file:///specs/machine/SCREEN_SPEC_05_channel_profile.md) | [SCREEN_SPEC_05_channel_profile_READABLE.md](file:///specs/human/SCREEN_SPEC_05_channel_profile_READABLE.md) |
 | **#06** | YouTube Downloads | `/feed/downloads` | `screenshots/youtube ss/downloads.png` | [SCREEN_SPEC_06_downloads.md](file:///specs/machine/SCREEN_SPEC_06_downloads.md) | [SCREEN_SPEC_06_downloads_READABLE.md](file:///specs/human/SCREEN_SPEC_06_downloads_READABLE.md) |
 | **#07** | YouTube Memberships | `/feed/memberships` | `screenshots/youtube ss/memberships.png` | [SCREEN_SPEC_07_memberships.md](file:///specs/machine/SCREEN_SPEC_07_memberships.md) | [SCREEN_SPEC_07_memberships_READABLE.md](file:///specs/human/SCREEN_SPEC_07_memberships_READABLE.md) |
+| **#08** | YouTube Settings / Account | `/account` | `screenshots/youtube ss/settings.png` | [SCREEN_SPEC_08_settings.md](file:///specs/machine/SCREEN_SPEC_08_settings.md) | [SCREEN_SPEC_08_settings_READABLE.md](file:///specs/human/SCREEN_SPEC_08_settings_READABLE.md) |
 
 ---
 
