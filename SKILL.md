@@ -37,6 +37,28 @@ This skill turns visual UI screenshots (from 1 to 100+ screens) into determinist
      - *Assets, Icons & Media Inventory* (icon names, product stills, logos)
 5. **Publish Code Generator Prompt / Component Implementation** upon user request.
 
+---
+
+## HIGH-FIDELITY UI & ZERO PLACEHOLDER ASSET STANDARDS
+
+To guarantee stunning visual output and prevent broken or low-quality UI:
+
+1. **Brand Logos & Wordmarks**:
+   - **STRICT ZERO-TOLERANCE POLICY:** Never generate placeholder dots `d="..."`, empty `<svg>`, or HTML comments like `<!-- Logo -->`.
+   - Always output complete, self-contained SVG paths or the verified lockup pattern (SVG icon + styled wordmark + badge) documented in Section 5 of `GLOBAL_DESIGN_SYSTEM.md`.
+2. **Iconography Fidelity**:
+   - Every icon (Search, Mic, Create, Bell, Navigation, Menu, Badges) must contain **complete, valid inline SVG vector paths** with proper `viewBox="0 0 24 24"`.
+3. **Imagery & Media Cards**:
+   - Never use empty gray rectangles. Always use high-resolution Unsplash image URLs with exact dimensions and crop params (e.g., `https://images.unsplash.com/photo-[id]?auto=format&fit=crop&w=640&q=80`) or vibrant multi-stop CSS gradient backdrops.
+4. **Avatars**:
+   - Render crisp circular elements with subtle multi-layer gradients and centered typography (`background: linear-gradient(135deg, #00838f, #00acc1); color: #fff;`) or photographic portraits.
+5. **Visual Depth & Micro-Interactions**:
+   - Typography: Include `@import url('https://fonts.googleapis.com/...');` and apply `-webkit-font-smoothing: antialiased`.
+   - Tactile feedback: Include `:hover` brightness/background shifts and `:active { transform: scale(0.97); }`.
+   - Subtle multi-layer shadows (`box-shadow: 0 1px 3px rgba(0,0,0,0.08), 0 4px 12px rgba(0,0,0,0.05)`).
+
+---
+
 ## DIRECTORY STRUCTURE AND USAGE GUIDE
 
 The skill organizes reference materials into specific folders:

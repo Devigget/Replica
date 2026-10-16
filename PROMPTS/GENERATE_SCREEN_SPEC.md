@@ -21,6 +21,23 @@ If given a folder of screenshots, iterate through all images in the folder and g
 
 ---
 
+## CRITICAL VISUAL FIDELITY & ASSET RULES (Zero Placeholder Policy)
+
+1. **Brand Logos & Wordmarks**:
+   - **STRICTLY FORBIDDEN:** Never output `d="..."`, empty `<svg></svg>`, or HTML comments like `<!-- Logo -->`.
+   - Every logo must be constructed with complete, valid, self-contained SVG paths or the verified lockup pattern (SVG icon + typed wordmark + badge) from Section 5 of `GLOBAL_DESIGN_SYSTEM.md`.
+2. **Iconography**:
+   - Every icon (Search, Mic, Create, Bell, Navigation, Menu, Badges) must contain **complete, valid inline SVG vector paths** (`viewBox="0 0 24 24"`, `fill="currentColor"` or explicit fill/stroke).
+3. **Imagery & Avatars**:
+   - Never use blank gray boxes for thumbnails or card media. Use high-resolution Unsplash images (e.g. `https://images.unsplash.com/photo-[id]?auto=format&fit=crop&w=640&q=80`) or styled CSS gradient backdrops.
+   - User avatars must render crisp circular elements with subtle gradients and centered typography (`background: linear-gradient(135deg, #00838f, #00acc1); color: #fff;`) or photographic portraits.
+4. **Typography & Antialiasing**:
+   - Always specify font family loading and include `-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;` in global resets.
+5. **Micro-Interactions**:
+   - Include tactile transitions (`0.15s cubic-bezier(0.2, 0, 0, 1)`), `:hover` states, and `:active` press transforms (`transform: scale(0.97)`).
+
+---
+
 ## Output Contract & Required Sections
 
 The generated file must adhere strictly to the following schema:
@@ -51,7 +68,7 @@ The generated file must adhere strictly to the following schema:
 ## 2. Component & DOM Hierarchy
 
 ```html
-<!-- Fully written semantic HTML5 DOM tree with all classes and inline SVGs -->
+<!-- Fully written semantic HTML5 DOM tree with ALL container classes, complete inline SVGs (NO d="..." or comments), and exact text content -->
 ```
 
 ---
@@ -59,7 +76,12 @@ The generated file must adhere strictly to the following schema:
 ## 3. Explicit CSS Specifications
 
 ```css
-/* Fully written, uncompressed CSS rules with exact Hex colors, Flexbox/Grid, paddings, borders, shadows, hover/active states, and media queries */
+/* Fully written, uncompressed CSS rules with:
+   - Font loading & -webkit-font-smoothing: antialiased
+   - Exact Hex colors & CSS variable token mapping
+   - Multi-layer shadows (box-shadow) & border radii
+   - Explicit :hover, :active, and transition properties
+   - Responsive media queries (@media) */
 ```
 
 ---
@@ -74,8 +96,9 @@ The generated file must adhere strictly to the following schema:
 
 ## 5. Assets, Icons & Micro-Copy
 
+- **Brand Logo & Vectors:** Complete SVG code snippets or explicit vector lockup markup.
 - **Icons Required:** Exact names, dimensions (width × height in px), and stroke/fill colors.
-- **Images & Media:** Aspect ratios (16:9, 1:1, 4:3), dimensions, border-radius, background fills, or overlay masks.
+- **Images & Media:** High-resolution asset URLs, aspect ratios (16:9, 1:1, 4:3), dimensions, and border-radii.
 - **Exact Micro-Copy Strings:** Exact text content for headlines, subtext, button labels, and badges.
 
 ---
@@ -90,9 +113,10 @@ The generated file must adhere strictly to the following schema:
 ---
 
 ## Quality Bar Checklist
+- [ ] Are all brand logos and vector icons 100% complete with ZERO placeholder `d="..."` or comments?
 - [ ] Are all hex colors exact (no generic "blue" or "gray")?
 - [ ] Is the DOM structure 100% semantic and complete?
 - [ ] Are all hover and active states explicitly written out in CSS?
+- [ ] Are thumbnails and media assigned high-resolution image URLs or rich gradients (no blank gray boxes)?
 - [ ] Are all responsive breakpoint adjustments clearly defined?
 - [ ] Is the output saved directly to `specs/machine/SCREEN_SPEC_[ID]_[name].md`?
-- [ ] If given a folder of screenshots, were all images processed?

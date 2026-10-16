@@ -51,11 +51,18 @@ specs/
 
 ---
 
-## Critical Consistency Rule:
-Both companion files must be in **100% mutual alignment**:
-- The CSS class names in the machine spec must match the classes documented in the human readable spec.
-- The Hex codes, color tokens, and font sizes must be identical across both documents.
-- Every button cataloged in the readable spec must exist in the DOM structure and CSS of the machine spec.
+## Critical Consistency & Visual Fidelity Rules
+
+1. **Mutual Alignment**:
+   - The CSS class names in the machine spec must match the classes documented in the human readable spec.
+   - The Hex codes, color tokens, and font sizes must be identical across both documents.
+   - Every button cataloged in the readable spec must exist in the DOM structure and CSS of the machine spec.
+
+2. **Strict Vector Asset & Logo Reproduction (Zero Placeholder Policy)**:
+   - **NEVER** output placeholder dots `d="..."`, empty `<svg>`, or HTML comments like `<!-- Logo -->`.
+   - Brand logos must be written out with 100% valid, tested SVG paths or the verified lockup pattern from Section 5 of `GLOBAL_DESIGN_SYSTEM.md`.
+   - All icons must have complete inline SVG paths with proper `viewBox="0 0 24 24"`.
+   - For media cards and thumbnails, use high-resolution Unsplash URLs or multi-layer gradient visuals (no blank gray boxes).
 
 ---
 
@@ -63,8 +70,8 @@ Both companion files must be in **100% mutual alignment**:
 
 Follow the instructions in `PROMPTS/GENERATE_SCREEN_SPEC.md`:
 - **Section 1: Metadata & Route:** Screen ID, screen name, target route, shell layout, viewport target breakpoints (Desktop 1440px+, Tablet 768px-1024px, Mobile <768px), and color theme.
-- **Section 2: Component & DOM Hierarchy:** Complete semantic HTML5 tree (`<main>`, `<header>`, `<section>`, `<aside>`) with exact container classes, text strings, and inline SVG paths.
-- **Section 3: Explicit CSS Specifications:** Fully written, uncompressed CSS rules with exact Hex colors, Flexbox/Grid coordinates, paddings, borders, shadows, `:hover`, `:active`, transitions, and media queries.
+- **Section 2: Component & DOM Hierarchy:** Complete semantic HTML5 tree (`<main>`, `<header>`, `<section>`, `<aside>`) with exact container classes, text strings, and full inline SVG paths (no placeholders).
+- **Section 3: Explicit CSS Specifications:** Fully written, uncompressed CSS rules with exact Hex colors, Flexbox/Grid coordinates, paddings, borders, multi-layer shadows, `:hover`, `:active`, transitions, antialiased font smoothing, and media queries.
 - **Section 4: Typography & Color Mapping Table:** Structured table with element mapping, selector, font-family, size, weight, line-height, and color hex.
 - **Section 5: Assets, Icons & Micro-Copy:** SVGs, asset dimensions, aspect ratios, and micro-copy strings.
 
@@ -83,6 +90,8 @@ Follow the instructions in `PROMPTS/GENERATE_SCREEN_SPEC_READABLE.md`:
 
 ## Quality Bar Checklist
 - [ ] Are files separated into `specs/machine/` and `specs/human/`?
+- [ ] Are all brand logos and vector icons 100% complete with ZERO placeholder `d="..."` or comments?
+- [ ] Are thumbnails and media assigned high-resolution image URLs or rich gradients (no blank gray boxes)?
 - [ ] If given a folder, were all screenshots in the folder processed without omitting any?
 - [ ] Are class names, tokens, and CSS properties 100% consistent between machine and human files?
 - [ ] Is there zero vague text (e.g. no "approximately", "placeholder styles", or truncated blocks)?

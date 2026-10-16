@@ -82,3 +82,18 @@ Based on the user's interactive response:
 - `specs/machine/` — Strictly for AI coding agents (DOM tree, explicit CSS rules, responsive breakpoints).
 - `specs/human/` — For designers & PMs (interactive elements table, typography clamp scale, visual tokens, layout matrix, assets inventory).
 - `specs/README.md` — Navigable index table linking all screens.
+
+---
+
+## 4. Visual Quality Bar & Zero-Placeholder Enforcement
+
+Whenever generating code or specifications:
+1. **Zero-Placeholder Policy**:
+   - **STRICTLY FORBIDDEN:** Outputting placeholder dots `d="..."`, empty `<svg>`, or HTML comments like `<!-- Logo -->`.
+   - Every logo must be constructed with complete, valid, self-contained SVG paths or the canonical lockup pattern from Section 5 of `GLOBAL_DESIGN_SYSTEM.md`.
+2. **Iconography Fidelity**:
+   - Every icon (Search, Mic, Create, Bell, Navigation, Menu, Badges) must contain complete, valid inline SVG vector paths with proper `viewBox="0 0 24 24"`.
+3. **Imagery & Media Cards**:
+   - Never use empty gray rectangles. Always use high-resolution Unsplash image URLs with exact dimensions and crop params or vibrant multi-stop CSS gradient backdrops.
+4. **Visual Depth & Micro-Interactions**:
+   - Apply `-webkit-font-smoothing: antialiased`, multi-layer subtle shadows, and tactile `:hover` / `:active { transform: scale(0.97); }` interactions.

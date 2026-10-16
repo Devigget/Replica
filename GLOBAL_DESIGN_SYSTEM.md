@@ -271,8 +271,101 @@ Every screen in the application mounts inside the **Standard Application Shell**
 
 ---
 
-## 5. Instructions for Coding Agents (Claude / Antigravity / Copilot)
+---
 
-1. **Always inherit from this master document**: Never hardcode colors when a CSS variable exists (e.g. use `var(--color-bg-base)` instead of hardcoding `#0f0f0f`).
-2. **Follow the App Shell Layout**: All screens mount into `<main class="app-main-viewport">`. Do not recreate headers or sidebars unless explicitly directed in the screen spec.
-3. **Respect Interactive States**: Include all `:hover`, `:active`, `:focus-visible`, and `transition` properties specified in the screen spec.
+## 5. Canonical Brand Assets & Pixel-Perfect Vector Library
+
+To ensure pristine visual quality and prevent broken logos or placeholder dots (`d="..."`), use these verified canonical SVG assets and lockups:
+
+### 5.1 YouTube Brand Logo Lockup
+```html
+<a href="/" class="yt-brand-logo" aria-label="YouTube Home">
+  <svg class="yt-logo-icon" viewBox="0 0 28 20" fill="none" aria-hidden="true">
+    <path fill="#FF0000" d="M27.4 3.1C27.1 1.9 26.1 0.9 24.9 0.6 22.7 0 14 0 14 0S5.3 0 3.1.6C1.9.9.9 1.9.6 3.1 0 5.3 0 10 0 10s0 4.7.6 6.9c.3 1.2 1.3 2.2 2.5 2.5 2.2.6 10.9.6 10.9.6s8.7 0 10.9-.6c1.2-.3 2.2-1.3 2.5-2.5.6-2.2.6-6.9.6-6.9s0-4.7-.6-6.9z"/>
+    <polygon fill="#FFFFFF" points="11.2,14.3 18.5,10 11.2,5.7"/>
+  </svg>
+  <span class="yt-brand-wordmark">YouTube</span>
+  <sup class="yt-region-code">IN</sup>
+</a>
+```
+
+```css
+.yt-brand-logo {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  text-decoration: none;
+  cursor: pointer;
+  user-select: none;
+}
+
+.yt-logo-icon {
+  width: 28px;
+  height: 20px;
+  flex-shrink: 0;
+}
+
+.yt-brand-wordmark {
+  font-family: 'Roboto', -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.6px;
+  color: var(--color-text-primary, #0f0f0f);
+  line-height: 1;
+}
+
+.yt-region-code {
+  font-size: 10px;
+  font-weight: 500;
+  color: var(--color-text-secondary, #606060);
+  margin-top: -8px;
+  margin-left: 2px;
+}
+```
+
+### 5.2 Google Multi-Color Vector Logo
+```html
+<svg class="google-logo-svg" viewBox="0 0 48 48" width="20" height="20" aria-hidden="true">
+  <path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/>
+  <path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/>
+  <path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/>
+  <path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/>
+</svg>
+```
+
+### 5.3 Verified Channel Badge & Members Only Star Badge
+```html
+<!-- Verified Badge -->
+<svg class="verified-check-icon" viewBox="0 0 24 24" width="14" height="14" fill="#606060" aria-label="Verified">
+  <path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10 10-4.5 10-10S17.5 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+</svg>
+
+<!-- Green Members Only Star Badge -->
+<div class="members-only-badge" style="display: inline-flex; align-items: center; gap: 4px; color: #0e8345; font-size: 12px; font-weight: 600;">
+  <svg viewBox="0 0 24 24" width="14" height="14" fill="#0e8345" aria-hidden="true">
+    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1.2 13.6l-3.2-1.9-3.2 1.9.8-3.6-2.8-2.5 3.7-.3 1.5-3.4 1.5 3.4 3.7.3-2.8 2.5.9 3.6z"/>
+  </svg>
+  <span>Members only</span>
+</div>
+```
+
+---
+
+## 6. Strict Quality & High-Fidelity UI Rules for AI Coding Agents
+
+1. **NO PLACEHOLDERS OR TRUNCATIONS**:
+   - **NEVER** output `d="..."`, empty `<svg>`, or HTML comments like `<!-- Logo -->`.
+   - All brand logos and vector icons must contain 100% complete, pixel-accurate, self-contained SVG paths or explicit vector markup.
+2. **AUTHENTIC ASSETS & IMAGERY**:
+   - For video thumbnails, avatars, and card imagery: **NEVER** use blank gray boxes.
+   - Use high-resolution Unsplash imagery (e.g. `https://images.unsplash.com/photo-[id]?auto=format&fit=crop&w=640&q=80`) or styled, gradient-backed illustrations.
+   - For user avatars: render crisp circular badges with subtle gradients and centered typography (`background: linear-gradient(135deg, #00838f, #00acc1); color: #fff;`) or photographic portraits.
+3. **TYPOGRAPHY & FONT SMOOTHING**:
+   - Load official fonts via Google Fonts: `<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;600;700&display=swap" rel="stylesheet">`.
+   - Apply `-webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale;` to ensure crisp text rendering.
+4. **MICRO-INTERACTIONS & DEPTH**:
+   - Include smooth transitions: `transition: background-color 0.15s cubic-bezier(0.2, 0, 0, 1), transform 0.1s ease;`.
+   - Include tactile click states: `:active { transform: scale(0.97); }`.
+   - Use multi-layer subtle shadows (`box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08), 0 4px 12px rgba(0, 0, 0, 0.05);`).
+5. **ALWAYS INHERIT FROM TOKENS**:
+   - Consume CSS custom properties from this master document (`var(--color-bg-base)`, etc.) to prevent style drift across screens.
