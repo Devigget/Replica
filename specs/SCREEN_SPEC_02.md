@@ -4,7 +4,7 @@
 > **Target Route:** `/downloads`  
 > **Source Reference:** Webex Official Client & Application Download Portal  
 > **Design Aesthetic:** High-Contrast Dark Theme with Cisco Emerald Green CTA & Ambient Radial Diffuse Glow  
-> **Companion Spec:** [`specs/SCREEN_SPEC_02_READABLE.md`](file:///c:/Users/RajdeepPurushottamPe/OneDrive%20-%20McLaren%20Strategic%20Solutions%20US%20Inc/Projects/.cursor/skills/Replica/specs/SCREEN_SPEC_02_READABLE.md)  
+> **Companion Spec:** [`specs/SCREEN_SPEC_02_READABLE.md`](./SCREEN_SPEC_02_READABLE.md)  
 
 ---
 

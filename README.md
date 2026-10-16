@@ -7,7 +7,7 @@
 [![GitHub Issues](https://img.shields.io/github/issues/Surya17155/Replica)](https://github.com/Surya17155/Replica/issues)
 
 > [!IMPORTANT]
-> **Team Guide:** For the multi-screen specification architecture and workflow guide (turning screenshots into explicit CSS/DOM specifications for Claude, Antigravity, and Copilot), see [SCREEN_SPEC_README.md](file:///c:/Users/VigneshPandurangGaun/OneDrive%20-%20McLaren%20Strategic%20Solutions%20US%20Inc/Documents/Shivansh%20Tasks%20for%20Frontend%20UI/Replica/SCREEN_SPEC_README.md).
+> **Team Guide:** For the multi-screen specification architecture and workflow guide (turning screenshots into explicit CSS/DOM specifications for Claude, Antigravity, and Copilot), see [SCREEN_SPEC_README.md](./SCREEN_SPEC_README.md).
 
 ---
 
@@ -87,27 +87,44 @@ Or [download the ZIP](https://github.com/Surya17155/Replica/archive/refs/heads/m
 
 | AI Agent | How to Install |
 |----------|---------------|
-| **Claude Code** | Place the `SKILL.md` file in your `.claude/skills/` directory (or upload the ZIP to your agent) |
+| **Google Antigravity** | Integrated in workspace (`.cursor/skills/` or `.agents/skills/`) |
 | **Cursor** | Add to `.cursor/skills/` directory |
+| **Claude Code** | Place the `SKILL.md` file in your `.claude/skills/` directory |
 | **Lovable / Bolt / Replit** | Copy `SKILL.md` content into your project instructions |
 
-### Step 3: Use It
+### Step 3: Fast Screen Spec Generation (Prompts for Antigravity & Cursor)
 
-1. **Upload your screenshot** — from Pinterest, Dribbble, Behance, Figma, or any design source
-2. **Let Replica analyze it** — the skill classifies the aesthetic, identifies motion effects, and catalogs required assets
-3. **Get your prompt** — a precise, copy-paste-ready developer prompt with exact colors, classes, and animation specs
-4. **Paste into your AI coding agent** — and watch it build your design perfectly
+To generate specifications from any screenshot, simply attach or paste your image into **Antigravity** or **Cursor** and use any of these simple 1-line prompts:
 
-### Example Usage
+#### 1. Generate Deterministic Code Contract (`SCREEN_SPEC_XX.md`)
+```text
+Follow PROMPTS/GENERATE_SCREEN_SPEC.md for this screenshot.
+```
+> **Outputs:** Complete DOM tree, explicit CSS rules, interactive `:hover`/`:active` states, design tokens, and responsive media queries.
+
+#### 2. Generate Human-Readable UI & Style Inventory (`SCREEN_SPEC_XX_READABLE.md`)
+```text
+Follow PROMPTS/GENERATE_SCREEN_SPEC_READABLE.md for this screenshot.
+```
+> **Outputs:** Button & action tables, typography hierarchy table with fluid `clamp()`, color palette tokens, layout & spacing matrix, and SVG asset inventory.
+
+#### 3. Generate BOTH Files Together (In Mutual Alignment)
+```text
+Follow PROMPTS/GENERATE_SCREEN_SPEC_BOTH.md for this screenshot.
+```
+> **Outputs:** Both companion files (`specs/SCREEN_SPEC_XX.md` and `specs/SCREEN_SPEC_XX_READABLE.md`) in 100% token and class alignment.
+
+*(Tip for Cursor users: You can also use the `@` mention shortcut: `@GENERATE_SCREEN_SPEC_BOTH.md for this screenshot`)*
+
+### Example Workflow
 
 ```
-User: "I found this hero section on Dribbble [uploads screenshot]"
-Replica: "I can see this is a glassmorphism dark-portfolio hero with:
-  - Floating pill navbar (glass effect, blur-20)
-  - Stagger entrance animation (fade-up, 0.7s each, 0.15s delay between)
-  - Gradient text headline (#FFFFFF → #B600A8)
-  - Multi-layer CTA button with inset shadow
-  Here's your exact prompt..."
+User: [Uploads screenshot of UI] "Follow PROMPTS/GENERATE_SCREEN_SPEC_BOTH.md for this screenshot."
+Antigravity / Cursor:
+  1. Detects screen brand and layout architecture.
+  2. Generates specs/SCREEN_SPEC_03.md (complete CSS & HTML code contract).
+  3. Generates specs/SCREEN_SPEC_03_READABLE.md (human-readable design & token audit).
+  Both files saved directly to specs/ ready for coding agents!
 ```
 
 ---
@@ -193,8 +210,11 @@ Replica/
 │       ├── pinterest-template-01.md through 08.md
 │       └── professional-prompt-nova-hero.md
 │
-├── PROMPTS/                       # 270+ verified prompt library
+├── PROMPTS/                       # Screen spec templates & 270+ verified prompt library
 │   ├── _index.md
+│   ├── GENERATE_SCREEN_SPEC.md         # Template: Deterministic code contract
+│   ├── GENERATE_SCREEN_SPEC_READABLE.md# Template: Human-readable style inventory
+│   ├── GENERATE_SCREEN_SPEC_BOTH.md    # Template: Both specs in mutual alignment
 │   ├── github-catalog/
 │   │   └── catalog.json           # Searchable catalog of all prompts
 │   └── github-interfaces/         # 170+ ready-to-use prompt JSONs
