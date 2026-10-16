@@ -1,67 +1,71 @@
-# Replica
+# Replica — Visual Screen Specification & Code Generation Engine
 
-> **Turn any screenshot or design reference into a precise, copy-paste-ready developer prompt** — with exact hex colors, Tailwind classes, animation specs, and component structure. Ready for Lovable, Bolt, Cursor, Replit, or any AI coding agent.
+> **Transform UI screenshots into deterministic, production-grade Screen Specifications (`specs/screen_XX.md`) and copy-paste-ready developer prompts.** Designed for scaling across any number of screens (1 to 100+) with zero style drift when targeting AI coding agents like Claude, Antigravity, and GitHub Copilot.
 
+[![Branch](https://img.shields.io/badge/branch-vignesh__idea-blue.svg)](https://github.com/Surya17155/Replica/tree/vignesh_idea)
 [![MIT License](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-[![GitHub Stars](https://img.shields.io/github/stars/Surya17155/Replica?style=social)](https://github.com/Surya17155/Replica/stargazers)
-[![GitHub Issues](https://img.shields.io/github/issues/Surya17155/Replica)](https://github.com/Surya17155/Replica/issues)
-
-> [!IMPORTANT]
-> **Team Guide:** For the multi-screen specification architecture and workflow guide (turning screenshots into explicit CSS/DOM specifications for Claude, Antigravity, and Copilot), see [SCREEN_SPEC_README.md](file:///c:/Users/VigneshPandurangGaun/OneDrive%20-%20McLaren%20Strategic%20Solutions%20US%20Inc/Documents/Shivansh%20Tasks%20for%20Frontend%20UI/Replica/SCREEN_SPEC_README.md).
+[![Spec Validator](https://img.shields.io/badge/Spec%20Validator-Passing-brightgreen.svg)](scripts/spec_validator.py)
 
 ---
 
-## Demo
+## ⚡ The Multi-Screen Triplet Workflow
 
 ```mermaid
 flowchart LR
-    A["🎯 Screenshot / Design<br/>(Pinterest, Dribbble, Figma)"]
-    B["🧠 Replica Skill<br/>Analyzes & Classifies"]
-    C["📝 Developer Prompt<br/>Hex Codes · Tailwind · Animations"]
-    D["⚡ AI Coding Agent<br/>Lovable · Bolt · Cursor · Replit"]
-    E["🎨 Live Website<br/>Pixel-perfect Replica"]
+    A["📸 Screenshot / UI Mocks<br/>(Drop in screenshots/)"]
+    B["🧠 Replica Spec Engine<br/>Analyzes & Maps to Tokens"]
+    C["📋 Explicit Screen Spec<br/>(specs/screen_XX.md)"]
+    D["🤖 AI Coding Agent<br/>(Claude / Antigravity / Copilot)"]
+    E["🚀 Pixel-Perfect Code<br/>(Zero Style Drift)"]
 
-    A --> B --> C --> D --> E
+    A --> B --> C
+    G["🌐 GLOBAL_DESIGN_SYSTEM.md<br/>(Color Tokens, Typography, AppShell)"] -.-> B
+    G --> D
+    C --> D
+    A --> D
+    D --> E
 ```
 
 ---
 
-## What is Replica?
+## What Replica Generates
 
-Replica is an **AI skill file** that acts as a bridge between visual design and code. Upload a screenshot (or describe a design), and Replica's structured knowledge base generates a production-grade developer prompt with:
+1. **Deterministic Screen Specifications (`specs/screen_XX.md`)**:
+   - **Explicit CSS Rulebooks**: Exact CSS properties for layout, spacing, typography, colors, and shadows — never vague descriptions.
+   - **Semantic DOM / Component Hierarchy**: HTML5 tree structure with clear class names and IDs.
+   - **Global Token Alignment**: Maps sampled visual values to `GLOBAL_DESIGN_SYSTEM.md` CSS custom properties.
+   - **Micro-Interactions & State Matrices**: Explicit rules for `:hover`, `:active`, `:focus-visible`, and transitions.
+   - **Asset & Icon Mapping**: Matches visual icons to Lucide/SVG equivalents and records exact micro-copy.
 
-- **Exact hex colors** — no vague "dark background"
-- **Complete Tailwind CSS classes** — mobile-first, responsive
-- **Full animation tuples** — initial state, animate state, duration, delay
-- **Component architecture** — PascalCase names with file paths
-- **Glassmorphism / gradient / shadow CSS** — complete blocks, not descriptions
-- **Asset inventory** — what images/videos you need and where they go
+2. **Automated Spec Validation**:
+   - Built-in validator (`python scripts/spec_validator.py --all`) that ensures specs have explicit CSS, proper sections, and zero ambiguous language.
+
+3. **Developer Prompts (Legacy Mode)**:
+   - Copy-paste prompts tailored for Bolt.new, Lovable, or v0.
 
 ---
 
-## How It Works
+## Project Structure
 
-```mermaid
-flowchart TB
-    subgraph Input["📥 Input"]
-        S["Screenshot / URL / Description"]
-    end
-
-    subgraph Process["🧠 Replica Processing Pipeline"]
-        direction TB
-        A["1. Scope Confirmation<br/>Hero section or full landing page?"]
-        B["2. Aesthetic Classification<br/>glassmorphism · dark-portfolio · fintech-saas<br/>nft-web3 · creative-studio · modern-agency"]
-        C["3. Motion & Effects Analysis<br/>Stagger · Parallax · Magnetic · Scroll-Reveal<br/>Marquee · Typewriter · 3D Tilt · etc."]
-        D["4. Asset Inventory<br/>Images · Videos · Icons · SVGs"]
-        E["5. Prompt Assembly<br/>Using Reference Templates"]
-        F["6. Quality Check<br/>15-point verification"]
-    end
-
-    subgraph Output["📤 Output"]
-        O["Production-Ready Developer Prompt"]
-    end
-
-    S --> A --> B --> C --> D --> E --> F --> O
+```text
+├── GLOBAL_DESIGN_SYSTEM.md       # Tier 1: Master design tokens, typography scale & App Shell
+├── SCREEN_SPEC_README.md         # Comprehensive team architecture guide
+├── screenshots/                  # Store raw visual references (01_screen.png, 02_screen.png, ...)
+│   └── README.md
+├── specs/                        # Generated deterministic screen specifications
+│   ├── 01_youtube_watch_view.md  # Reference verified specification
+│   └── README.md
+├── scripts/
+│   ├── spec_validator.py         # Automated specification validation CLI
+│   └── ...
+├── DIRECTOR/
+│   ├── spec-generation-engine.md # Spec generation rules & quality gate
+│   └── ...
+├── REFERENCE/
+│   ├── spec-output-template-screen.md   # Standard screen spec output schema
+│   ├── image-analysis-checklist-screen.md # Visual decomposition checklist
+│   └── ...
+└── SKILL.md                      # Core AI agent skill definition
 ```
 
 ---
