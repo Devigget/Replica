@@ -24,24 +24,18 @@ This skill turns visual UI screenshots (from 1 to 100+ screens) into determinist
    - Output: Standardized markdown specification (`specs/screen_XX.md`) following `REFERENCE/spec-output-template-screen.md`.
    - Consumer: AI coding agents (Claude, Antigravity, GitHub Copilot) consuming the triplet `[GLOBAL_DESIGN_SYSTEM.md + specs/screen_XX.md + screenshot]`.
 
-2. **Single-Prompt Mode (Legacy)**:
-   - Produces a single copy-paste prompt for tools like Bolt.new or Lovable.
-
----
-
-## HOW TO USE THIS SKILL (Screen Spec Mode)
-
-When the user uploads a screenshot of an application screen:
-
-1. **Identify Screen Scope & Context**: Determine screen name, route, and parent shell (e.g. `SCR-01`, `/watch`, `AppLayout`).
-2. **Execute Visual Checklist**: Run `REFERENCE/image-analysis-checklist-screen.md` silently.
-3. **Map Global Tokens**: Align sampled colors and fonts with `GLOBAL_DESIGN_SYSTEM.md`.
-4. **Generate Explicit CSS & DOM**: Write complete CSS blocks (box model, flex/grid, colors, typography, shadows).
-5. **Map States & Assets**: Fill the interactive states matrix (`:hover`, `:active`) and icon/text list.
-6. **Save Specification**: Write the output to `specs/screen_XX_<name>.md`.
-7. **Validate**: Run `python scripts/spec_validator.py specs/screen_XX_<name>.md`.
-
----
+1. **Ask Scope or Screen ID** (if not specified; e.g., Hero, Full Landing, or Multi-Screen App Screen #N)
+2. **Ask Brand Context** (if not provided; fall back to screenshot text)
+3. **Run Image Analysis** (silently — internal checklist)
+4. **Publish Dual-Spec Outputs**:
+   - **File 1 (`SCREEN_SPEC_XX.md`):** Complete deterministic code-generation contract (HTML/JSX DOM hierarchy, compiled CSS rules, Framer Motion tuples, and responsive breakpoints).
+   - **File 2 (`SCREEN_SPEC_XX_READABLE.md`):** Structured human-readable UI & design audit spec:
+     - *Buttons & Interactive Elements Catalog* (every button, link, icon action, visual style, hover/active state, CSS)
+     - *Headers & Typography Catalog* (every `h1`, `h2`, font-family, fluid `clamp()`, weights, colors/gradients)
+     - *CSS System & Visual Tokens* (colors, frosted glass effects, gradients, shadows, borders)
+     - *Layout & Spacing Matrix* (flexbox/grid models, container paddings, alignments)
+     - *Assets, Icons & Media Inventory* (icon names, product stills, logos)
+5. **Publish Code Generator Prompt / Component Implementation** upon user request.
 
 ## DIRECTORY STRUCTURE AND USAGE GUIDE
 
